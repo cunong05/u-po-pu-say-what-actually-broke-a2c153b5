@@ -1,10 +1,15 @@
-// Say What Actually Broke — make.fun bounty, program/v1 (Node 22, stdlib only).
-// Writes the single-line error copy to /output/entry.txt and prints it.
+// Say What Actually Broke — one line of honest error copy (Node 22, stdlib only).
+// The program writes the line to <OUTPUT_DIR>/entry.txt and prints it.
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-const ENTRY =
-  "Nothing you did caused this. The server filled its own disk with logs about the disk being full. Try again once we have deleted the evidence.";
+const PART_A = "Nothing you did caused this. ";
+const PART_B = "The server filled its own disk with logs about the disk being full. ";
+const PART_C = "Try again once we have deleted the evidence.";
+const ENTRY = PART_A + PART_B + PART_C;
+if (ENTRY.length > 200) {
+  throw new Error("entry exceeds the 200-character limit");
+}
 
 const outDir = process.env.OUTPUT_DIR ?? "/output";
 mkdirSync(outDir, { recursive: true });
