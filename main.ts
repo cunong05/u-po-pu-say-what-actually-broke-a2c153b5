@@ -1,5 +1,7 @@
 // Say What Actually Broke — one line of honest error copy (Node 22, stdlib only).
 // The program writes the line to <OUTPUT_DIR>/entry.txt and prints it.
+// The line is built from three parts so the wording stays exact and readable.
+// A guard keeps the entry inside the bounty limit of 200 characters.
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
